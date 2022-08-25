@@ -25,10 +25,11 @@ function Sort() {
             <div className="Header">
                 <div className="Title">Sorting Algorithms</div> {/* change after form submitted */}
                 <div className="Form">
+
                     <Button variant="contained" size="small" onClick={() => { bubbleSort(array) }}>Bubble Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { insertionSort() }}>Insertion Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { selectionSort() }}>Selection Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { mergeSort() }}>Merge Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { insertionSort(array) }}>Insertion Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { selectionSort(array) }}>Selection Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { mergeSort(array) }}>Merge Sort</Button>
                     <Button variant="contained" size="small" onClick={() => { quickSort() }}>Quick Sort</Button>
                 </div>
             </div>
