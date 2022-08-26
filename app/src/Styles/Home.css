@@ -27,6 +27,8 @@
 }
 
 .Home-body {
+  width: 100vw;
+  height: 80vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -38,6 +40,7 @@
   /* height: 30vh; */
   text-decoration: none;
   width: 30vw;
+  height: 70vh;
   background-color: #282c34;
   margin-top: 20px;
   margin-bottom: 10px;

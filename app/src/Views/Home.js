@@ -17,11 +17,9 @@ function Home() {
       </header>
       <body className="Home-body">
         <AlgorithmCard title={"Sorting Algorithms"} body={"Bubble, Insertion, Selection, Merge, Quick"} link={"/sort"} />
-        <AlgorithmCard title={"Searching Algorithms"} body={"Binary"} link={"/search"} />
-        <AlgorithmCard title={"Hashing Algorithms"} body={""} link={"/hash"} />
-        <AlgorithmCard title={"Dictionary Algorithms"} body={""} link={"/dict"} />
+        <AlgorithmCard title={"Searching Algorithms"} body={"Linear, Binary, Interpolation"} link={"/search"} />
         <AlgorithmCard title={"String Matching Algorithms"} body={""} link={"/match"} />
-        <AlgorithmCard title={"Compression Algorithms"} body={""} link={"/comp"} />
+        <AlgorithmCard title={"Path Finding Algorithms"} body={""} link={"/match"} />
       </body>
     </div>
   );

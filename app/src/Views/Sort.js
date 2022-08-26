@@ -30,7 +30,7 @@ function Sort() {
                     <Button variant="contained" size="small" onClick={() => { insertionSort(array) }}>Insertion Sort</Button>
                     <Button variant="contained" size="small" onClick={() => { selectionSort(array) }}>Selection Sort</Button>
                     <Button variant="contained" size="small" onClick={() => { mergeSort(array) }}>Merge Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { quickSort() }}>Quick Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { quickSort(array) }}>Quick Sort</Button>
                 </div>
             </div>
             <div className="Body">

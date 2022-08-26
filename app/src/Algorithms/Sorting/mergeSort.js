@@ -1,15 +1,14 @@
 var seq = [[]];
-var index;
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export default async function bubbleSort(arr) {
+export default async function mergeSort(arr) {
 
     var elements = document.getElementsByClassName('bar');
 
-    mergeSort(arr);
+    arr = mergeSortSeq(arr, 0 , arr.length);
 
     var animationSeq = seq;
 
@@ -19,47 +18,71 @@ export default async function bubbleSort(arr) {
 
         // color change
         if (animationSeq[i][0] == 0) {
-            await delay(5);
+            await delay(15);
             arrStyleOne.backgroundColor = 'red';
-            await delay(5);
+            await delay(15);
             arrStyleOne.backgroundColor = '#f5f0e5';
         } else {
         // height change
-            var arrStyleTwo = elements[animationSeq[i][2]].style;
-            await delay(5);
-            var temp = arrStyleOne.height;
-            arrStyleOne.height = arrStyleTwo.height;
-            arrStyleTwo.height = temp;
+            // var arrStyleTwo = elements[animationSeq[i][2]].style;
+            await delay(25);
+            arrStyleOne.height = `${animationSeq[i][2]}px`; // GETTING OVERWRITTEN!!!! cant swap 2 elements??
         }
 
     }
 }
 
-function merge(left, right) {
+function merge(left, right, l, mid, r) {
+    var leftI = l;
+    var rightI = r;
+
     let sortedArr = []; // the sorted items will go here
+    let indices = [];
+    
+    var compOne = l;
+    var compTwo = mid;
+
     while (left.length && right.length) {
+        if (compOne - l < left.length) {
+            seq.push([0, compOne]);
+            compOne++;
+        }
+        if (compTwo - mid < right.length) {
+            seq.push([0, compTwo]);
+            compTwo++;
+        }
         // Insert the smallest item into sortedArr
         if (left[0] < right[0]) {
             sortedArr.push(left.shift());
-            seq.push([1, sortedArr.length - 1, index - left.length])
+            l++;
+            // seq.push([1, sortedArr.length - 1, index])
         } else {
             sortedArr.push(right.shift());
-            seq.push([1, sortedArr.length - 1, index])
+            mid++;
+            // seq.push([1, sortedArr.length - 1, index])
         }
     }
 
-    // Use spread operators to create a new array, combining the three arrays
-    return [...sortedArr, ...left, ...right]
+    sortedArr = [...sortedArr, ...left, ...right];
+
+    var x = 0;
+    for (var i = leftI; i < rightI; i++) {
+        seq.push([1, i, sortedArr[x]]);
+        x++;
+    }
+
+    return sortedArr;
 }
 
-function mergeSort(arr) {
+function mergeSortSeq(arr, l, r) {
     // Base case
-    if (arr.length <= 1) return arr
-    let mid = Math.floor(arr.length / 2)
-    seq.push([0, mid]);
+    if ((r - l) <= 1) {
+        return [arr[r]];
+    }
+    let mid = Math.floor((l + r) / 2)
+    // seq.push([0, mid]);
     // Recursive calls
-    let left = mergeSort(arr.slice(0, mid));
-    index = left.length;
-    let right = mergeSort(arr.slice(mid));
-    return merge(left, right);
+    let left = mergeSortSeq(arr, l, mid);
+    let right = mergeSortSeq(arr, mid, r);
+    return merge(left, right, l, mid, r);
 }
