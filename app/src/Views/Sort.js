@@ -2,6 +2,7 @@ import '../Styles/Sort.css';
 import React, { useState, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 import bubbleSort from '../Algorithms/Sorting/bubbleSort.js';
 import insertionSort from '../Algorithms/Sorting/insertionSort';
@@ -14,7 +15,7 @@ function initializeArray(num) {
     var arr = [];
 
     for (var i = 0; i < num; i++) {
-        arr.push(Math.floor(Math.random() * (Math.round(window.innerHeight / 100) * 80)) + 15); // random between 1 & Math.round(window.innerHeight / 100)
+        arr.push(Math.floor(Math.random() * (Math.round(window.innerHeight / 100) * 78)) + 10); // random between 1 & Math.round(window.innerHeight / 100)
     }
 
     return arr;
@@ -53,9 +54,15 @@ function Sort() {
         <div className="Sort">
 
             <div className="Header">
-                <div className="Title">Sorting Algorithms</div>
 
-                <Slider onChangeCommitted={ changeValue } defaultValue={100} min={10} max={200} aria-label="Default" valueLabelDisplay="auto" />
+                <Button className="Back" variant="contained" size="small" component={Link} to="../">Back</Button>
+
+                <div className="Title">
+
+                    <p>Sorting Algorithms</p>
+                </div>
+                
+                <Slider className="Slider" onChangeCommitted={ changeValue } defaultValue={105} min={10} max={200} aria-label="Default" valueLabelDisplay="auto" />
 
                 <div className="Form">
 
@@ -68,7 +75,7 @@ function Sort() {
             </div>
             <div className="Body">
                 {array.map((x, i) => (
-                    <div className="bar" style={{height: `${x}px`, width: `${300 / array.length}px`}} key={i}/>
+                    <div className="bar" style={{height: `${x}px`, width: `${400 / array.length}px`}} key={i}/>
                 ))}
             </div>
         </div>
