@@ -8,11 +8,17 @@ export default async function quickSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
+    var length = elements.length;
+
     arr = quick(arr);
 
     var animationSeq = seq;
 
     for (var i = 1; i < animationSeq.length; i++) {
+
+        if (length != elements.length) {
+            return;
+        }
 
         var arrStyleOne = elements[animationSeq[i][1]].style;
 

@@ -6,9 +6,15 @@ export default async function insertionSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
+    var length = elements.length;
+
     var animationSeq = getAnimationSeq(arr);
 
     for (var i = 1; i < animationSeq.length; i++) {
+
+        if (length != elements.length) {
+            return;
+        }
 
         var arrStyleOne = elements[animationSeq[i][1]].style;
         var arrStyleTwo = elements[animationSeq[i][2]].style;

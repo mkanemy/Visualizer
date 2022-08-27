@@ -26,6 +26,11 @@ function Sort() {
     const [time, setTime] = useState(10);
 
     const changeValue = (event, value) => {
+
+        if (value == array.length) {
+            return;
+        }
+
         setArray(initializeArray(value));
         if (value < 20) {
             setTime(100);
@@ -41,7 +46,7 @@ function Sort() {
     };
 
     useEffect(() => {
-        setArray(initializeArray(100))
+        setArray(initializeArray(100));
     }, [])
 
     return (
@@ -50,7 +55,7 @@ function Sort() {
             <div className="Header">
                 <div className="Title">Sorting Algorithms</div>
 
-                <Slider onChange={ changeValue } defaultValue={100} min={10} max={200} aria-label="Default" valueLabelDisplay="auto" />
+                <Slider onChangeCommitted={ changeValue } defaultValue={100} min={10} max={200} aria-label="Default" valueLabelDisplay="auto" />
 
                 <div className="Form">
 

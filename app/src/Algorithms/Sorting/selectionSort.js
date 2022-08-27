@@ -6,11 +6,18 @@ export default async function selectionSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
+    var length = elements.length;
+
     var animationSeq = getAnimationSeq(arr);
 
     var orange = null;
 
     for (var i = 1; i < animationSeq.length; i++) {
+
+        if (length != elements.length) {
+            orange.backgroundColor = '#f5f0e5';
+            return;
+        }
 
         if (animationSeq[i][0] == 2) {
             await delay(time);
