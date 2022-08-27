@@ -2,7 +2,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export default async function selectionSort(arr) {
+export default async function selectionSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
@@ -13,7 +13,7 @@ export default async function selectionSort(arr) {
     for (var i = 1; i < animationSeq.length; i++) {
 
         if (animationSeq[i][0] == 2) {
-            await delay(10);
+            await delay(time);
             var arrStyleOne = elements[animationSeq[i][1]].style;
             if (orange != null) {
                 orange.backgroundColor = '#f5f0e5';
@@ -28,12 +28,12 @@ export default async function selectionSort(arr) {
         // color change
         if (animationSeq[i][0] == 0) {
             arrStyleOne.backgroundColor = 'red';
-            await delay(10);
+            await delay(time);
             arrStyleOne.backgroundColor = '#f5f0e5';
         } else {
         // height change
             var arrStyleTwo = elements[animationSeq[i][2]].style;
-            await delay(10);
+            await delay(time);
             var temp = arrStyleOne.height;
             arrStyleOne.height = arrStyleTwo.height;
             arrStyleTwo.height = temp;

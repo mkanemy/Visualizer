@@ -4,7 +4,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export default async function mergeSort(arr) {
+export default async function mergeSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
@@ -18,14 +18,14 @@ export default async function mergeSort(arr) {
 
         // color change
         if (animationSeq[i][0] == 0) {
-            await delay(15);
+            await delay(time / 2);
             arrStyleOne.backgroundColor = 'red';
-            await delay(15);
+            await delay(time / 2);
             arrStyleOne.backgroundColor = '#f5f0e5';
         } else {
         // height change
             // var arrStyleTwo = elements[animationSeq[i][2]].style;
-            await delay(25);
+            await delay(time);
             arrStyleOne.height = `${animationSeq[i][2]}px`; // GETTING OVERWRITTEN!!!! cant swap 2 elements??
         }
 

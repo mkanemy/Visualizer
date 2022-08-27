@@ -2,7 +2,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export default async function bubbleSort(arr) {
+export default async function bubbleSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
@@ -17,12 +17,12 @@ export default async function bubbleSort(arr) {
         if (animationSeq[i][0] == 0) {
             arrStyleOne.backgroundColor = 'red';
             arrStyleTwo.backgroundColor = 'red';
-            await delay(10);
+            await delay(time);
             arrStyleOne.backgroundColor = '#f5f0e5';
             arrStyleTwo.backgroundColor = '#f5f0e5';
         } else {
         // height change
-            await delay(10);
+            await delay(time);
             var temp = arrStyleOne.height;
             arrStyleOne.height = arrStyleTwo.height;
             arrStyleTwo.height = temp;

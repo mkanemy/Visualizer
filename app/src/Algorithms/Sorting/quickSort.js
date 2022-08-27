@@ -4,7 +4,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export default async function quickSort(arr) {
+export default async function quickSort(arr, time) {
 
     var elements = document.getElementsByClassName('bar');
 
@@ -18,14 +18,14 @@ export default async function quickSort(arr) {
 
         // color change
         if (animationSeq[i][0] == 0) {
-            await delay(15);
+            await delay(time/2);
             arrStyleOne.backgroundColor = 'red';
-            await delay(15);
+            await delay(time/2);
             arrStyleOne.backgroundColor = '#f5f0e5';
         } else if (animationSeq[i][0] == 1) {
         // height change
             var arrStyleTwo = elements[animationSeq[i][2]].style;
-            await delay(25);
+            await delay(time);
             var temp = arrStyleOne.height;
             arrStyleOne.height = arrStyleTwo.height;
             arrStyleTwo.height = temp;

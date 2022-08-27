@@ -23,9 +23,21 @@ function initializeArray(num) {
 function Sort() {
 
     const [array, setArray] = useState([]);
+    const [time, setTime] = useState(10);
 
     const changeValue = (event, value) => {
         setArray(initializeArray(value));
+        if (value < 20) {
+            setTime(100);
+        } else if (value < 50) {
+            setTime(20);
+        } else if (value < 100) {
+            setTime(10);
+        } else if (value < 150) {
+            setTime(5);
+        } else {
+            setTime(2);
+        }
     };
 
     useEffect(() => {
@@ -42,11 +54,11 @@ function Sort() {
 
                 <div className="Form">
 
-                    <Button variant="contained" size="small" onClick={() => { bubbleSort(array) }}>Bubble Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { insertionSort(array) }}>Insertion Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { selectionSort(array) }}>Selection Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { mergeSort(array) }}>Merge Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { quickSort(array) }}>Quick Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { bubbleSort(array, time) }}>Bubble Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { insertionSort(array, time) }}>Insertion Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { selectionSort(array, time) }}>Selection Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { mergeSort(array, time) }}>Merge Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { quickSort(array, time) }}>Quick Sort</Button>
                 </div>
             </div>
             <div className="Body">
