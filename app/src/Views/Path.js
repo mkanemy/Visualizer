@@ -9,9 +9,9 @@ import dijkstraAlgorithm from '../Algorithms/PathFinding/dijkstra.js';
 function initializeArray(x, y) {
     var arr = [];
 
-    for (var i = 0; i < x; i++) {
+    for (var i = 0; i < y; i++) {
         var arr2 = [];
-        for (var j = 0; j < y; j++) {
+        for (var j = 0; j < x; j++) {
             arr2[j] = 0;
         }
         arr[i] = arr2;
@@ -25,7 +25,7 @@ function Path() {
     const [array, setArray] = useState([[]]);
 
     useEffect(() => {
-        setArray(initializeArray(20, 20));
+        setArray(initializeArray(65, 35));
     }, [])
 
     return (
@@ -47,9 +47,11 @@ function Path() {
             </div>
             <div className="Body">
                 {array.map((x) => (
-                    x.map((y) => (
-                        <div className="box" style={{height: '20px', width: '20px'}} /*key={x * y + y}*//>
-                    ))
+                    <div className="hr">
+                        {x.map((y) => (
+                            <div className="box" style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
+                        ))}
+                    </div>
                 ))}
             </div>
         </div>
