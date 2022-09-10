@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
 import dijkstraAlgorithm from '../Algorithms/PathFinding/dijkstra.js';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 function initializeArray(x, y) {
     var arr = [];
@@ -24,9 +25,25 @@ function Path() {
 
     const [array, setArray] = useState([[]]);
 
+    window.mouseDown = false;
+    document.onmousedown = function() {
+        window.mouseDown = true;
+        // console.log('click');
+    }
+    document.onmouseup = function() {
+        window.mouseDown = false;
+        // console.log('unclick');
+    }
+
     useEffect(() => {
         setArray(initializeArray(65, 35));
     }, [])
+
+    function hover() {
+        if (window.mouseDown) {
+            console.log('hi')
+        }
+    }
 
     return (
         <div className="Sort">
@@ -49,7 +66,7 @@ function Path() {
                 {array.map((x) => (
                     <div className="hr">
                         {x.map((y) => (
-                            <div className="box" style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
+                            <button className="box" onMouseOver={() => { hover() }} onMouseDown={() => { console.log('h') }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
                         ))}
                     </div>
                 ))}
