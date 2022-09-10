@@ -44,8 +44,12 @@ function Path() {
 
     function hover(x) {
         if (window.mouseDown) {
-            console.log(x);
+            document.getElementById(x).style.backgroundColor = 'blue';
         }
+    }
+
+    function click(x) {
+        document.getElementById(x).style.backgroundColor = 'blue';
     }
 
     return (
@@ -69,7 +73,7 @@ function Path() {
                 {array.map((x) => (
                     <div className="hr">
                         {x.map((y) => (
-                            <button className="box" onMouseOver={() => { hover(y) }} onMouseDown={() => { console.log('h') }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
+                            <button className="box" id={y} onMouseOver={() => { hover(y) }} onMouseDown={() => { click(y) }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
                         ))}
                     </div>
                 ))}
