@@ -10,10 +10,13 @@ import { hover } from '@testing-library/user-event/dist/hover';
 function initializeArray(x, y) {
     var arr = [];
 
+    var index = 0;
+
     for (var i = 0; i < y; i++) {
         var arr2 = [];
         for (var j = 0; j < x; j++) {
-            arr2[j] = 0;
+            arr2[j] = index;
+            index++;
         }
         arr[i] = arr2;
     }
@@ -39,9 +42,9 @@ function Path() {
         setArray(initializeArray(65, 35));
     }, [])
 
-    function hover() {
+    function hover(x) {
         if (window.mouseDown) {
-            console.log('hi')
+            console.log(x);
         }
     }
 
@@ -66,7 +69,7 @@ function Path() {
                 {array.map((x) => (
                     <div className="hr">
                         {x.map((y) => (
-                            <button className="box" onMouseOver={() => { hover() }} onMouseDown={() => { console.log('h') }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
+                            <button className="box" onMouseOver={() => { hover(y) }} onMouseDown={() => { console.log('h') }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
                         ))}
                     </div>
                 ))}
