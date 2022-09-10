@@ -17,3 +17,22 @@
 .hr {
     display: flex;
 }
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 15vh;
+}
+
+.Settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 75vw;
+}
+
+.Algos {
+    display: flex;
+    flex-direction: row;
+}

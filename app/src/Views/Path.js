@@ -52,6 +52,13 @@ function Path() {
         document.getElementById(x).style.backgroundColor = 'blue';
     }
 
+    function clearBoard() {
+        var els = document.getElementsByClassName("box");
+        for (var i = 0; i < els.length; i++) {
+            els[i].style.backgroundColor = 'white';
+        }
+    }
+
     return (
         <div className="Sort">
 
@@ -65,8 +72,14 @@ function Path() {
                 </div>
 
                 <div className="Form">
-
-                    <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Dijkstras</Button>
+                    <div className="Algos">
+                        <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Dijkstras</Button>
+                    </div>
+                    <div className="Settings">
+                        <Button variant="contained" size="small" onClick={() => { clearBoard() }}>Clear</Button>
+                        <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Start Node</Button>
+                        <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>End Node</Button>
+                    </div>
                 </div>
             </div>
             <div className="Body">
