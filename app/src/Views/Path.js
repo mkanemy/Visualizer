@@ -49,7 +49,13 @@ function Path() {
     }
 
     function click(x) {
-        document.getElementById(x).style.backgroundColor = 'blue';
+        var el = document.getElementById(x).style;
+
+        if (el.backgroundColor == 'blue') {
+            el.backgroundColor = 'white';
+        } else {
+            el.backgroundColor = 'blue';
+        }
     }
 
     function clearBoard() {
