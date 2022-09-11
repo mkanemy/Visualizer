@@ -28,6 +28,9 @@ function Path() {
 
     const [array, setArray] = useState([[]]);
 
+    let start, end = false;
+    var startElement, endElement = undefined;
+
     window.mouseDown = false;
     document.onmousedown = function() {
         window.mouseDown = true;
@@ -43,8 +46,12 @@ function Path() {
     }, [])
 
     function hover(x) {
+        var el = document.getElementById(x).style;
+
         if (window.mouseDown) {
-            document.getElementById(x).style.backgroundColor = 'blue';
+            if (el.backgroundColor != 'green' && el.backgroundColor != 'black') {
+                el.backgroundColor = 'blue';
+            }
         }
     }
 
@@ -54,7 +61,23 @@ function Path() {
         if (el.backgroundColor == 'blue') {
             el.backgroundColor = 'white';
         } else {
-            el.backgroundColor = 'blue';
+            if (start) {
+                if (startElement != undefined) {
+                    startElement.style.backgroundColor = 'white';
+                }
+                el.backgroundColor = 'green';
+                startElement = document.getElementById(x);
+                start = false;
+            } else if (end) {
+                if (endElement != undefined) {
+                    endElement.style.backgroundColor = 'white';
+                }
+                el.backgroundColor = 'black';
+                endElement = document.getElementById(x);
+                end = false;
+            } else if (el.backgroundColor != 'green' && el.backgroundColor != 'black') {
+                el.backgroundColor = 'blue';
+            }
         }
     }
 
@@ -63,6 +86,14 @@ function Path() {
         for (var i = 0; i < els.length; i++) {
             els[i].style.backgroundColor = 'white';
         }
+    }
+
+    function drawStart() {
+        start = true;
+    }
+
+    function drawEnd() {
+        end = true;
     }
 
     return (
@@ -83,8 +114,8 @@ function Path() {
                     </div>
                     <div className="Settings">
                         <Button variant="contained" size="small" onClick={() => { clearBoard() }}>Clear</Button>
-                        <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Start Node</Button>
-                        <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>End Node</Button>
+                        <Button variant="contained" size="small" onClick={() => { drawStart() }}>Start Node</Button>
+                        <Button variant="contained" size="small" onClick={() => { drawEnd() }}>End Node</Button>
                     </div>
                 </div>
             </div>
