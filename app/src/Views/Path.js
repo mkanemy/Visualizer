@@ -24,9 +24,15 @@ function initializeArray(x, y) {
     return arr;
 }
 
+function initStartEnd() {
+    document.getElementById('918').style.backgroundColor = 'green';
+    document.getElementById('965').style.backgroundColor = 'black';
+}
+
 function Path() {
 
     const [array, setArray] = useState([[]]);
+    var rendered = false;
 
     let start, end = false;
     var startElement, endElement = undefined;
@@ -124,7 +130,8 @@ function Path() {
                     <div className="hr">
                         {x.map((y) => (
                             <button className="box" id={y} onMouseOver={() => { hover(y) }} onMouseDown={() => { click(y) }} style={{height: '10px', width: '10px'}} /*key={x * y + y}*//>
-                        ))}
+                        ))
+                        }
                     </div>
                 ))}
             </div>

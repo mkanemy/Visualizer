@@ -18,6 +18,11 @@
 
 .Body {
     height: 75vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .bar {
@@ -57,4 +62,5 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-direction: row !important;
 }
