@@ -1,2 +1,3 @@
-function dijkstraAlgorithm() {
+export default function dijkstraAlgorithm(arr) {
+    console.log(arr);
 }
