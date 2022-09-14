@@ -132,9 +132,9 @@ function Path() {
                         <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Dijkstras</Button>
                     </div>
                     <div className="Settings">
-                        <Button variant="contained" size="small" onClick={() => { clearBoard() }}>Clear</Button>
-                        <Button variant="contained" size="small" onClick={() => { drawStart() }}>Start Node</Button>
-                        <Button variant="contained" size="small" onClick={() => { drawEnd() }}>End Node</Button>
+                        <Button variant="contained" className="btn" size="small" onClick={() => { clearBoard() }}>Clear</Button>
+                        <Button variant="contained" className="btn" size="small" onClick={() => { drawStart() }}>Start Node</Button>
+                        <Button variant="contained" className="btn" size="small" onClick={() => { drawEnd() }}>End Node</Button>
                     </div>
                 </div>
             </div>
