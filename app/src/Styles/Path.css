@@ -1,3 +1,25 @@
+.Path {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    height: 100vh;
+}
+
+.Header {
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Back {
+    position: absolute !important;
+    top: 5px;
+    left: 5px;
+}
 
 .box {
     text-decoration: none;
@@ -9,16 +31,17 @@
     background-color: red;
 }
 
-.Body {
+.BodyPath {
     display: flex;
     flex-direction: column;
+    margin-top: 3vh;
 }
 
 .hr {
     display: flex;
 }
 
-.Form {
+.FormPath {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,4 +58,5 @@
 .Algos {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }

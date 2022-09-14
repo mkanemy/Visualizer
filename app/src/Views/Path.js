@@ -103,7 +103,7 @@ function Path() {
     }
 
     return (
-        <div className="Sort">
+        <div className="Path">
 
             <div className="Header">
 
@@ -114,7 +114,7 @@ function Path() {
                     <p>Path Finding Algorithms</p>
                 </div>
 
-                <div className="Form">
+                <div className="FormPath">
                     <div className="Algos">
                         <Button variant="contained" size="small" onClick={() => { dijkstraAlgorithm() }}>Dijkstras</Button>
                     </div>
@@ -125,7 +125,7 @@ function Path() {
                     </div>
                 </div>
             </div>
-            <div className="Body">
+            <div className="BodyPath">
                 {array.map((x) => (
                     <div className="hr">
                         {x.map((y) => (
