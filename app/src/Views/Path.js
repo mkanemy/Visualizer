@@ -25,17 +25,23 @@ function initializeArray(x, y) {
 }
 
 function initStartEnd() {
-    document.getElementById('918').style.backgroundColor = 'green';
-    document.getElementById('965').style.backgroundColor = 'black';
+    if (document.getElementById('965')) {
+        document.getElementById('918').style.backgroundColor = 'green';
+        document.getElementById('965').style.backgroundColor = 'black';
+    }
 }
 
 function Path() {
 
     const [array, setArray] = useState([[]]);
-    var rendered = false;
 
     let start, end = false;
     var startElement, endElement = undefined;
+
+    useEffect(() => {
+        startElement = document.getElementById('918');
+        endElement = document.getElementById('965');
+    })
 
     window.mouseDown = false;
     document.onmousedown = function() {
@@ -50,6 +56,10 @@ function Path() {
     useEffect(() => {
         setArray(initializeArray(65, 35));
     }, [])
+
+    useEffect(() => {
+        initStartEnd();
+    })
 
     function hover(x) {
         var el = document.getElementById(x).style;
@@ -92,6 +102,9 @@ function Path() {
         for (var i = 0; i < els.length; i++) {
             els[i].style.backgroundColor = 'white';
         }
+        startElement = document.getElementById('918');
+        endElement = document.getElementById('965');
+        initStartEnd();
     }
 
     function drawStart() {
