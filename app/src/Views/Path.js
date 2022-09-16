@@ -117,24 +117,27 @@ function Path() {
 
     function dijkstras() {
         var arr = [[]];
+        var start, end;
         var rows = document.getElementsByClassName("hr");
         for (var i = 0; i < rows.length; i++) {
             var box = rows[i].getElementsByClassName("box");
             var arr2 = [];
             for (var j = 0; j < box.length; j++) {
                 if (box[j].style.backgroundColor == 'green') {
-                    arr2.push('S');
+                    arr2.push(['S', box[j]]);
+                    var start = [i+1, j];
                 } else if (box[j].style.backgroundColor == 'black') {
-                    arr2.push('E');
+                    arr2.push(['E', box[j]]);
+                    var end = [i+1, j];
                 } else if (box[j].style.backgroundColor == 'blue') {
-                    arr2.push('X');
+                    arr2.push(['X', box[j]]);
                 } else {
-                    arr2.push('O');
+                    arr2.push(['O', box[j]]);
                 }
             }
             arr.push(arr2);
         }
-        dijkstraAlgorithm(arr);
+        dijkstraAlgorithm(arr, start, end);
     }
 
     return (
