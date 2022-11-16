@@ -25,6 +25,7 @@ function Sort() {
 
     const [array, setArray] = useState([]);
     const [time, setTime] = useState(10);
+    var click = true;
 
     const changeValue = (event, value) => {
 
@@ -50,6 +51,9 @@ function Sort() {
         setArray(initializeArray(100));
     }, [])
 
+    function insertionSort1(array, time) {
+    }
+
     return (
         <div className="Sort">
 
@@ -66,11 +70,31 @@ function Sort() {
 
                 <div className="Form">
 
-                    <Button variant="contained" size="small" onClick={() => { bubbleSort(array, time) }}>Bubble Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { insertionSort(array, time) }}>Insertion Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { selectionSort(array, time) }}>Selection Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { mergeSort(array, time) }}>Merge Sort</Button>
-                    <Button variant="contained" size="small" onClick={() => { quickSort(array, time) }}>Quick Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { 
+                        if (click) {
+                            click = false;
+                            bubbleSort(array, time);
+                        } }}>Bubble Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { 
+                        if (click) {
+                            click = false;
+                            insertionSort(array, time);
+                        } }}>Insertion Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { 
+                        if (click) {
+                            click = false;
+                            selectionSort(array, time);
+                        } }}>Selection Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { 
+                        if (click) {
+                            click = false;
+                            mergeSort(array, time);
+                        } }}>Merge Sort</Button>
+                    <Button variant="contained" size="small" onClick={() => { 
+                        if (click) {
+                            click = false;
+                            quickSort(array, time);
+                        } }}>Quick Sort</Button>
                 </div>
             </div>
             <div className="Body">
