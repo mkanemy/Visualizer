@@ -46,11 +46,9 @@ function Path() {
     window.mouseDown = false;
     document.onmousedown = function() {
         window.mouseDown = true;
-        // console.log('click');
     }
     document.onmouseup = function() {
         window.mouseDown = false;
-        // console.log('unclick');
     }
 
     useEffect(() => {

@@ -62,7 +62,6 @@ function Sort() {
                 <Button className="Back" variant="contained" size="small" component={Link} to="../">Back</Button>
 
                 <div className="Title">
-
                     <p>Sorting Algorithms</p>
                 </div>
                 
