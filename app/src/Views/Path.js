@@ -122,15 +122,15 @@ function Path() {
             var arr2 = [];
             for (var j = 0; j < box.length; j++) {
                 if (box[j].style.backgroundColor == 'green') {
-                    arr2.push(['S', box[j]]);
+                    arr2.push([-1, box[j]]);
                     var start = [i+1, j];
                 } else if (box[j].style.backgroundColor == 'black') {
-                    arr2.push(['E', box[j]]);
+                    arr2.push([-2, box[j]]);
                     var end = [i+1, j];
                 } else if (box[j].style.backgroundColor == 'blue') {
-                    arr2.push(['X', box[j]]);
+                    arr2.push([-3, box[j]]);
                 } else {
-                    arr2.push(['O', box[j]]);
+                    arr2.push([Number.MAX_SAFE_INTEGER, box[j]]);
                 }
             }
             arr.push(arr2);
