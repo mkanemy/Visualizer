@@ -1,8 +1,64 @@
-export default function dijkstraAlgorithm(arr, start, end) {
+export class Node {
+    constructor(x, y, char, dis, parent, el) {
+        this.dis = dis;
+        this.car = char;
+        this.x = x;
+        this.y = y;
+        this.parent = parent;
+        this.el = el;
+    }
+
+    get coords() {
+        return [this.x, this.y];
+    }
+
+    get color() {
+        return this.el.style.backgroundColor;
+    }
+
+    style(color) {
+        this.el.style.backgroundColor = color;
+    }
+}
+
+// Construct array
+export default function dijkstraAlgorithm() {
+    var arr = [[Node]];
+    var start, end;
+    var rows = document.getElementsByClassName("hr");
+    for (var i = 0; i < rows.length; i++) {
+        var box = rows[i].getElementsByClassName("box");
+        var arr2 = [];
+        for (var j = 0; j < box.length; j++) {
+            var node = new Node(i+1, j, '0', Number.MAX_SAFE_INTEGER, null, box[j]);
+            if (node.color == 'green') {
+                node.char = 'S';
+                var start = [i+1, j];
+            } else if (node.color == 'black') {
+                node.char = 'E';
+                var end = [i+1, j];
+            } else if (node.color == 'blue') {
+                node.char = 'X'
+                node.dis = -3;
+            } 
+            arr2.push(node);
+        }
+        arr.push(arr2);
+    }
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr[i].length; j++) {
+            console.log(arr[i][j].x, ", ", arr[i][j].y, ", ", arr[i][j].dis);
+        }
+    }
+    dijkstras(arr, start, end);
+}
+
+function dijkstras(arr, start, end) {
     var size = arr.length * arr[1].length;
     var current = start;
     var currentDis = 0;
     var newDis = 0;
+    var val = [];
 
     for (var i = size; i > 0; i--) {
         if (arr[current[0]][current[1]][0] == -2) {
@@ -35,7 +91,7 @@ export default function dijkstraAlgorithm(arr, start, end) {
         //         // SET PARENT????
         //     }
         // }
-        var val = arr[current[0]][current[1]+1];
+        val = arr[current[0]][current[1]+1];
         if (val[0] != -5) {
             val[1].style.backgroundColor = 'orange';
             newDis = currentDis + 1;
