@@ -10,14 +10,14 @@ function Home() {
   return (
     <div className="Home">
       <header className="Home-header">
-        <div className="Home-header-container">
+        <div className="Home-header-container"> 
           <p className="Home-header-title">Visualizer</p>
           <p className="Home-header-text">Select a category below to continue!</p>
         </div>
       </header>
       <body className="Home-body">
-        <AlgorithmCard title={"Sorting Algorithms"} body={"Bubble, Insertion, Selection, Merge, Quick"} link={"/sort"} />
-        <AlgorithmCard title={"Path Finding Algorithms"} body={""} link={"/path"} />
+        <AlgorithmCard title={"Sorting Algorithms"} body={"Bubble, Insertion, Selection, Merge, Quick"} link={"/sort"} img={require("../Images/sorting.png")} />
+        <AlgorithmCard title={"Path Finding Algorithms"} body={"Dijkstras"} link={"/path"} img={require("../Images/path.png")} />
       </body>
     </div>
   );
@@ -31,8 +31,8 @@ function AlgorithmCard(props) {
           <CardMedia
             component="img"
             height="140"
-            image={require("../Images/contemplative-reptile.jpeg")}
-            alt="green iguana"
+            image={props.img}
+            alt="Image of page"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

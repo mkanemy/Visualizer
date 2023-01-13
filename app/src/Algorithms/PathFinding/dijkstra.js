@@ -1,3 +1,7 @@
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
 export class Node {
     constructor(x, y, char, dis, parent, el) {
         this.dis = dis;
@@ -33,10 +37,11 @@ export default function dijkstraAlgorithm() {
             var node = new Node(i+1, j, '0', Number.MAX_SAFE_INTEGER, null, box[j]);
             if (node.color == 'green') {
                 node.char = 'S';
-                var start = [i+1, j];
+                start = [i+1, j];
+                node.dis = 0;
             } else if (node.color == 'black') {
                 node.char = 'E';
-                var end = [i+1, j];
+                end = [i+1, j];
             } else if (node.color == 'blue') {
                 node.char = 'X'
                 node.dis = -3;
@@ -45,70 +50,69 @@ export default function dijkstraAlgorithm() {
         }
         arr.push(arr2);
     }
-    for (var i = 0; i < arr.length; i++) {
-        for (var j = 0; j < arr[i].length; j++) {
-            console.log(arr[i][j].x, ", ", arr[i][j].y, ", ", arr[i][j].dis);
-        }
-    }
     dijkstras(arr, start, end);
 }
 
-function dijkstras(arr, start, end) {
-    var size = arr.length * arr[1].length;
-    var current = start;
-    var currentDis = 0;
-    var newDis = 0;
-    var val = [];
+function checkDis(neighbour, current) {
+    if (current.dis + 1 < neighbour.dis) {
+        neighbour.dis = current.dis + 1;
+    }
+}
 
-    for (var i = size; i > 0; i--) {
-        if (arr[current[0]][current[1]][0] == -2) {
-            return;
-        }
-        if (currentDis != 0) {
-            currentDis = arr[current[0]][current[1]][0];
-        }
+var visit = [];
+async function dijkstras(arr, start, end) {
+    visit.push(start);
+    while (visit.length != 0) {
+        await delay(5);
+        var current = visit[0];
+        var box = arr[current[0]][current[1]];
+        box.el.style.backgroundColor = "yellow";
+        box.dis = -3;
+        dijkstrasVisit(arr, current, end);
+        visit.shift();
+    }
+}
 
-        if (current[0] < 0 || current[0] > arr.length || current[1] < 0 || current[1] > arr[1].length) {
-            return;
-        }
 
-        arr[current[0]][current[1]][0] = -5;
+function dijkstrasVisit(arr, start, end) {
+    var x = start[0];
+    var y = start[1];
+    var current = arr[x][y];
 
-        // if (arr[current[0]+1][current[1]][0] != -5) {
-        //     arr[start[0]+1][start[1]][1].style.backgroundColor = 'blue';
-        //     newDis = currentDis + 1;
-        //     if (newDis < arr[current[0]+1][current[1]][0]) {
-        //         arr[current[0]+1][current[1]][0] = newDis;
-        //         // SET PARENT????
-        //         current = arr[current[0]+1][current[1]][0];
-        //     }
-        // }
-        // if (arr[current[0]-1][current[1]][0] != -5) {
-        //     arr[start[0]-1][start[1]][1].style.backgroundColor = 'blue';
-        //     newDis = currentDis + 1;
-        //     if (newDis < arr[current[0]-1][current[1]][0]) {
-        //         arr[current[0]-1][current[1]][0] = newDis;
-        //         // SET PARENT????
-        //     }
-        // }
-        val = arr[current[0]][current[1]+1];
-        if (val[0] != -5) {
-            val[1].style.backgroundColor = 'orange';
-            newDis = currentDis + 1;
-            console.log(newDis);
-            if (newDis < val[0]) {
-                val[0] = newDis;
-                // SET PARENT????
-                current = [current[0], current[1]+1];
+    if (x > 1) {
+        var left = arr[x-1][y];
+        if (left.dis != -3) {
+            checkDis(left, current);
+            if (!visit.some((v) => v[0] == x-1 && v[1] == y)) {
+                visit.push([x-1, y]);
             }
         }
-        // if (arr[current[0]][current[1]-1][0] != -5) {
-        //     arr[start[0]][start[1]-1][1].style.backgroundColor = 'blue';
-        //     newDis = currentDis + 1;
-        //     if (newDis < arr[current[0]][current[1]-1][0]) {
-        //         arr[current[0]][current[1]-1][0] = newDis;
-        //         // SET PARENT????
-        //     }
-        // }
+    }
+    if (x < arr.length - 1) {
+        var right = arr[x+1][y];
+        if (right.dis != -3) {
+            checkDis(right, current);
+            if (!visit.some((v) => v[0] == x+1 && v[1] == y)) {
+                visit.push([x+1, y]);
+            }
+        }
+    }
+    if (y < arr[1].length - 1) {
+        var up = arr[x][y+1];
+        if (up.dis != -3) {
+            checkDis(up, current);
+            if (!visit.some((v) => v[0] == x && v[1] == y+1)) {
+                visit.push([x, y+1]);
+            }
+        }
+    }
+    if (y > 0) {
+        var down = arr[x][y-1];
+        if (down.dis != -3) {
+            checkDis(down, current);
+            if (!visit.some((v) => v[0] == x && v[1] == y-1)) {
+                visit.push([x, y-1]);
+            }
+        }
     }
 }
