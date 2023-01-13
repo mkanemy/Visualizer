@@ -10,6 +10,7 @@ export class Node {
         this.y = y;
         this.parent = parent;
         this.el = el;
+        this.visited = false;
     }
 
     get coords() {
@@ -44,7 +45,7 @@ export default function dijkstraAlgorithm() {
                 end = [i+1, j];
             } else if (node.color == 'blue') {
                 node.char = 'X'
-                node.dis = -3;
+                node.visited = true;
             } 
             arr2.push(node);
         }
@@ -63,25 +64,73 @@ var visit = [];
 async function dijkstras(arr, start, end) {
     visit.push(start);
     while (visit.length != 0) {
-        await delay(5);
+        await delay(0.5);
         var current = visit[0];
         var box = arr[current[0]][current[1]];
-        box.el.style.backgroundColor = "yellow";
-        box.dis = -3;
+        if (current != start) {
+            box.el.style.backgroundColor = "yellow";
+        }
+        box.visited = true;
         dijkstrasVisit(arr, current, end);
         visit.shift();
     }
 }
 
+async function drawPath(arr, x, y) {
+    var box = arr[x][y];
+    box.el.style.backgroundColor = "red"
+    var dis = box.dis - 1;
+
+    console.log(box.dis);
+
+    await delay(3);
+
+    if (x > 1) {
+        var left = arr[x-1][y];
+        if (left.dis == dis) {
+            drawPath(arr, x-1, y);
+            return;
+        }
+    }
+    if (x < arr.length - 1) {
+        var right = arr[x+1][y];
+        if (right.dis == dis) {
+            drawPath(arr, x+1, y);
+            return;
+        }
+    }
+    if (y < arr[1].length - 1) {
+        var up = arr[x][y+1];
+        if (up.dis == dis) {
+            drawPath(arr, x, y+1);
+            return;
+        }
+    }
+    if (y > 0) {
+        var down = arr[x][y-1];
+        if (down.dis == dis) {
+            drawPath(arr, x, y-1);
+            return;
+        }
+    }   
+}
 
 function dijkstrasVisit(arr, start, end) {
     var x = start[0];
     var y = start[1];
     var current = arr[x][y];
 
+    if (x == end[0] && y == end[1]) {
+        while (visit.length != 0) {
+            visit.shift();
+        }
+        drawPath(arr, x, y);
+        return;
+    }
+
     if (x > 1) {
         var left = arr[x-1][y];
-        if (left.dis != -3) {
+        if (!left.visited) {
             checkDis(left, current);
             if (!visit.some((v) => v[0] == x-1 && v[1] == y)) {
                 visit.push([x-1, y]);
@@ -90,7 +139,7 @@ function dijkstrasVisit(arr, start, end) {
     }
     if (x < arr.length - 1) {
         var right = arr[x+1][y];
-        if (right.dis != -3) {
+        if (!right.visited) {
             checkDis(right, current);
             if (!visit.some((v) => v[0] == x+1 && v[1] == y)) {
                 visit.push([x+1, y]);
@@ -99,7 +148,7 @@ function dijkstrasVisit(arr, start, end) {
     }
     if (y < arr[1].length - 1) {
         var up = arr[x][y+1];
-        if (up.dis != -3) {
+        if (!up.visited) {
             checkDis(up, current);
             if (!visit.some((v) => v[0] == x && v[1] == y+1)) {
                 visit.push([x, y+1]);
@@ -108,7 +157,7 @@ function dijkstrasVisit(arr, start, end) {
     }
     if (y > 0) {
         var down = arr[x][y-1];
-        if (down.dis != -3) {
+        if (!down.visited) {
             checkDis(down, current);
             if (!visit.some((v) => v[0] == x && v[1] == y-1)) {
                 visit.push([x, y-1]);
