@@ -37,11 +37,11 @@ function Sort() {
         if (value < 20) {
             setTime(100);
         } else if (value < 50) {
-            setTime(20);
+            setTime(15);
         } else if (value < 100) {
-            setTime(10);
+            setTime(7.5);
         } else if (value < 150) {
-            setTime(5);
+            setTime(2);
         } else {
             setTime(2);
         }
@@ -50,9 +50,6 @@ function Sort() {
     useEffect(() => {
         setArray(initializeArray(100));
     }, [])
-
-    function insertionSort1(array, time) {
-    }
 
     return (
         <div className="Sort">
@@ -65,7 +62,7 @@ function Sort() {
                     <p>Sorting Algorithms</p>
                 </div>
                 
-                <Slider className="Slider" onChangeCommitted={ changeValue } defaultValue={105} min={10} max={200} aria-label="Default" valueLabelDisplay="auto" />
+                <Slider className="Slider" onChangeCommitted={ changeValue } defaultValue={60} min={10} max={110} aria-label="Default" valueLabelDisplay="auto" />
 
                 <div className="Form">
 

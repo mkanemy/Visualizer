@@ -26,7 +26,7 @@ function Home() {
 function AlgorithmCard(props) {
   return (
     <a className="Home-AlgorithmCard" href={props.link}>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, margin: "0 auto" }}>
         <CardActionArea>
           <CardMedia
             component="img"

@@ -6,6 +6,8 @@ function delay(time) {
 
 export default async function mergeSort(arr, time) {
 
+    seq = [[]]
+
     var elements = document.getElementsByClassName('bar');
 
     var length = elements.length;

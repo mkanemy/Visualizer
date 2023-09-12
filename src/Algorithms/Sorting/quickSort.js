@@ -1,4 +1,4 @@
-var seq = [[]];
+var quickSec = [[]];
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -6,13 +6,15 @@ function delay(time) {
 
 export default async function quickSort(arr, time) {
 
+    quickSec = [[]];
+
     var elements = document.getElementsByClassName('bar');
 
     var length = elements.length;
 
     arr = quick(arr);
 
-    var animationSeq = seq;
+    var animationSeq = quickSec;
 
     for (var i = 1; i < animationSeq.length; i++) {
 
@@ -53,7 +55,7 @@ function partition(arr, start, end) {
                 var temp = arr[i];
                 arr[i] = arr[swapIndex];
                 arr[swapIndex] = temp;
-                seq.push([1, i, swapIndex]);
+                quickSec.push([1, i, swapIndex]);
             }
         }
     }
@@ -62,7 +64,7 @@ function partition(arr, start, end) {
         var temp = arr[start];
         arr[start] = arr[swapIndex];
         arr[swapIndex] = temp;
-        seq.push([1, start, swapIndex]);
+        quickSec.push([1, start, swapIndex]);
     }
     return swapIndex;
 }
